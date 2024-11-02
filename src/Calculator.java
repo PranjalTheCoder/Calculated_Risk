@@ -1,28 +1,27 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
-    private List<String> history;
+    private HistoryManager historyManager;
 
     public Calculator() {
-        history = new ArrayList<>();
+        historyManager = new HistoryManager();
     }
 
     public double add(double a, double b) {
         double result = a + b;
-        history.add(a + " + " + b + " = " + result);
+        historyManager.addToHistory(a + " + " + b + " = " + result);
         return result;
     }
 
     public double subtract(double a, double b) {
         double result = a - b;
-        history.add(a + " - " + b + " = " + result);
+        historyManager.addToHistory(a + " - " + b + " = " + result);
         return result;
     }
 
     public double multiply(double a, double b) {
         double result = a * b;
-        history.add(a + " * " + b + " = " + result);
+        historyManager.addToHistory(a + " * " + b + " = " + result);
         return result;
     }
 
@@ -31,11 +30,15 @@ public class Calculator {
             throw new IllegalArgumentException("Cannot divide by zero.");
         }
         double result = a / b;
-        history.add(a + " / " + b + " = " + result);
+        historyManager.addToHistory(a + " / " + b + " = " + result);
         return result;
     }
 
     public List<String> getHistory() {
-        return history;
+        return historyManager.getHistory();
+    }
+
+    public void displayHistory() {
+        historyManager.displayHistory();
     }
 }
